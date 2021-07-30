@@ -21,6 +21,7 @@ namespace CRUD
         public Form1()
         {
             InitializeComponent();
+            txtRealCodigo.Enabled = false;
         }
 
         #region Cifrado
@@ -42,7 +43,7 @@ namespace CRUD
                 {
                     if (numeric[j] == codigoPlano[i])
                     {
-                        codigoCifrado = codigoCifrado + conversorSplit[j];
+                        codigoCifrado = codigoCifrado + conversorSplit[j] + ' ';
                     }
                 }
             }
@@ -55,23 +56,24 @@ namespace CRUD
         {
             char[] alfa =
             {
-                ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+                '-', 'A', 'B', 'D', 'G', 'K', 'O', 'U', 'C', 'L', 'S'
             };
-            string conversor = "-,A,B,D,G,K,O,U,C,L,S,T";
+            string conversor = " ,0,1,2,3,4,5,6,7,8,9";
             string[] conversorSplit = conversor.Split(',');
-            string[] codigoDes = txtCodigo.Text.Split(' ');
+            char[] codigoDes = txtCodigo.Text.ToCharArray();
 
             for (int i = 0; i < codigoDes.Length; i++)
             {
-                for (int j = 0; j < conversorSplit.Length; j++)
+                for (int j = 0; j < alfa.Length; j++)
                 {
-                    if (conversorSplit[j].Equals(codigoDes[i]))
+                    if (alfa[j] == codigoDes[i])
                     {
-                        codigoDescifrado = codigoDescifrado + alfa[j];
+                        codigoDescifrado = codigoDescifrado + conversorSplit[j];
                     }
                 }
             }
             return codigoDescifrado;
+            
         }
         #endregion
 
@@ -225,12 +227,14 @@ namespace CRUD
         private void limpiar()
         {
             txtId.Text = "";
-            txtCodigo.Text = "";
+            txtCodigo.Text = String.Empty;
             txtNombre.Text = "";
             txtDescripcion.Text = "";
             txtPrecioPublico.Text = "";
             txtExistencias.Text = "";
+            txtRealCodigo.Text = "";
             txtCodigo.Enabled = true;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
