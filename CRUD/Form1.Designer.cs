@@ -33,6 +33,8 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtRealCodigo = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.txtExistencias = new System.Windows.Forms.TextBox();
@@ -45,8 +47,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtRealCodigo = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,6 +114,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos de producto";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.button1.Location = new System.Drawing.Point(109, 30);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(146, 33);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Revelar código real";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtRealCodigo
+            // 
+            this.txtRealCodigo.Location = new System.Drawing.Point(261, 32);
+            this.txtRealCodigo.Name = "txtRealCodigo";
+            this.txtRealCodigo.Size = new System.Drawing.Size(121, 26);
+            this.txtRealCodigo.TabIndex = 14;
+            // 
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(316, 239);
@@ -139,6 +157,7 @@
             this.txtExistencias.Name = "txtExistencias";
             this.txtExistencias.Size = new System.Drawing.Size(150, 26);
             this.txtExistencias.TabIndex = 11;
+            this.txtExistencias.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExistencias_KeyPress);
             // 
             // label6
             // 
@@ -155,6 +174,7 @@
             this.txtPrecioPublico.Name = "txtPrecioPublico";
             this.txtPrecioPublico.Size = new System.Drawing.Size(150, 26);
             this.txtPrecioPublico.TabIndex = 7;
+            this.txtPrecioPublico.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrecioPublico_KeyPress);
             // 
             // label4
             // 
@@ -204,6 +224,7 @@
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(150, 26);
             this.txtCodigo.TabIndex = 1;
+            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // label1
             // 
@@ -213,24 +234,6 @@
             this.label1.Size = new System.Drawing.Size(63, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Código:";
-            // 
-            // txtRealCodigo
-            // 
-            this.txtRealCodigo.Location = new System.Drawing.Point(261, 32);
-            this.txtRealCodigo.Name = "txtRealCodigo";
-            this.txtRealCodigo.Size = new System.Drawing.Size(121, 26);
-            this.txtRealCodigo.TabIndex = 14;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.button1.Location = new System.Drawing.Point(109, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 33);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Revelar código real";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 

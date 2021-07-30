@@ -14,8 +14,8 @@ namespace CRUD
     public partial class Form1 : Form
     {
         #region Variables
-        public string codigoCifrado = "";
-        public string codigoDescifrado = "";
+        public string codigoCifrado = string.Empty;
+        public string codigoDescifrado = string.Empty;
         #endregion
 
         public Form1()
@@ -43,7 +43,8 @@ namespace CRUD
                 {
                     if (numeric[j] == codigoPlano[i])
                     {
-                        codigoCifrado = codigoCifrado + conversorSplit[j] + ' ';
+                        codigoCifrado = codigoCifrado + conversorSplit[j];
+                        //break;
                     }
                 }
             }
@@ -227,12 +228,15 @@ namespace CRUD
         private void limpiar()
         {
             txtId.Text = "";
-            txtCodigo.Text = String.Empty;
+            txtCodigo.Clear();
+            txtCodigo.ResetText();
             txtNombre.Text = "";
             txtDescripcion.Text = "";
             txtPrecioPublico.Text = "";
             txtExistencias.Text = "";
-            txtRealCodigo.Text = "";
+            txtRealCodigo.Clear();
+            txtRealCodigo.ResetText();
+            txtRealCodigo.Refresh();
             txtCodigo.Enabled = true;
             
         }
@@ -241,6 +245,60 @@ namespace CRUD
         {
             descifrarCodigo();
             txtRealCodigo.Text = codigoDescifrado;
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsUpper(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar ==  '-')
+            {
+                e.Handled = false;
+            }
+            else if (Char.IsSeparator(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+
+            //if ((e.KeyChar == ' ') && (sender as TextBox).Text.IndexOf(" ") > -3)
+            //{
+            //    e.Handled = true;
+            //}
+        }
+
+        private void txtPrecioPublico_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && (sender as TextBox).Text.IndexOf(".") > -1)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtExistencias_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
