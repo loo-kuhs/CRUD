@@ -33,7 +33,7 @@ namespace CRUD
                 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T',
                 'U', 'V', 'W', 'X', 'Y', 'Z',*/ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
             };
-            string conversor = "-,A,B,D,G,K,O,U,C,L,S";
+            string conversor = "-,A,B,D,G,K,O,U,C,L,T";
             string[] conversorSplit = conversor.Split(',');
             char[] codigoPlano = txtCodigo.Text.ToCharArray();
 
@@ -57,7 +57,7 @@ namespace CRUD
         {
             char[] alfa =
             {
-                '-', 'A', 'B', 'D', 'G', 'K', 'O', 'U', 'C', 'L', 'S'
+                '-', 'A', 'B', 'D', 'G', 'K', 'O', 'U', 'C', 'L', 'T'
             };
             string conversor = " ,0,1,2,3,4,5,6,7,8,9";
             string[] conversorSplit = conversor.Split(',');
