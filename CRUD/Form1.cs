@@ -57,7 +57,7 @@ namespace CRUD
             {
                 ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
             };
-            string conversor = "-,A,B,D,G,K,O,U,C,L,S";
+            string conversor = "-,A,B,D,G,K,O,U,C,L,S,T";
             string[] conversorSplit = conversor.Split(',');
             string[] codigoDes = txtCodigo.Text.Split(' ');
 
@@ -65,7 +65,7 @@ namespace CRUD
             {
                 for (int j = 0; j < conversorSplit.Length; j++)
                 {
-                    if (conversorSplit[j] == codigoDes[i])
+                    if (conversorSplit[j].Equals(codigoDes[i]))
                     {
                         codigoDescifrado = codigoDescifrado + alfa[j];
                     }
@@ -122,7 +122,6 @@ namespace CRUD
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            
             String codigo = txtCodigo.Text;
             MySqlDataReader reader = null;
 
@@ -232,14 +231,6 @@ namespace CRUD
             txtPrecioPublico.Text = "";
             txtExistencias.Text = "";
             txtCodigo.Enabled = true;
-        }
-
-        private void txtRealCodigo_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtRealCodigo_Click(object sender, EventArgs e)
-        {   
         }
 
         private void button1_Click(object sender, EventArgs e)

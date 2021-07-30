@@ -220,14 +220,13 @@
             this.txtRealCodigo.Name = "txtRealCodigo";
             this.txtRealCodigo.Size = new System.Drawing.Size(121, 26);
             this.txtRealCodigo.TabIndex = 14;
-            this.txtRealCodigo.Click += new System.EventHandler(this.txtRealCodigo_Click);
-            this.txtRealCodigo.TextChanged += new System.EventHandler(this.txtRealCodigo_TextChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(101, 25);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.button1.Location = new System.Drawing.Point(109, 30);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(154, 33);
+            this.button1.Size = new System.Drawing.Size(146, 33);
             this.button1.TabIndex = 15;
             this.button1.Text = "Revelar código real";
             this.button1.UseVisualStyleBackColor = true;
