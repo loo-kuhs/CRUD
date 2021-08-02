@@ -16,26 +16,37 @@ namespace CRUD
         #region Variables
         public string codigoCifrado = string.Empty;
         public string codigoDescifrado = string.Empty;
+        public string textoCifrado = string.Empty;
+        public string textoDescifrado = string.Empty;
         #endregion
 
         public Form1()
         {
             InitializeComponent();
+            ToolTip tipParaTontos = new ToolTip();
+
+            //tipForDummie.AutoPopDelay = 400;
+            //tipForDummie.InitialDelay = 1000;
+            //tipForDummie.ReshowDelay = 500;
+
+            this.tipForDummie.ShowAlways = true;
+
+            this.tipForDummie.SetToolTip(this.txtCodigo, "Solo numeros y un espacio entre ellos.");
+            this.tipForDummie.SetToolTip(this.txtNombre, "Solo numeros, letras minusculas y mayusculas");
+            this.tipForDummie.SetToolTip(this.txtDescripcion, "Solo numeros, letras minusculas y mayusculas");
             txtRealCodigo.Enabled = false;
         }
 
         #region Cifrado
-        public string cifrarCodigo()
+        public string cifrarCodigo(string txtBox)
         {
             char[] numeric =
             {
-                ' ',/*'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-                'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T',
-                'U', 'V', 'W', 'X', 'Y', 'Z',*/ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+                ' ', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
             };
             string conversor = "-,A,B,D,G,K,O,U,C,L,T";
             string[] conversorSplit = conversor.Split(',');
-            char[] codigoPlano = txtCodigo.Text.ToCharArray();
+            char[] codigoPlano = txtBox.ToCharArray();
 
             for (int i = 0; i < codigoPlano.Length; i++)
             {
@@ -44,16 +55,43 @@ namespace CRUD
                     if (numeric[j] == codigoPlano[i])
                     {
                         codigoCifrado = codigoCifrado + conversorSplit[j];
-                        //break;
                     }
                 }
             }
             return codigoCifrado;
         }
+
+        public string cifrarNomAndDesc(string textBox)
+        {
+            char[] alfanumerico =
+            {
+                ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 
+                'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+                'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 
+                'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 
+                'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', 
+                '5', '6', '7', '8', '9'
+            };
+            string ToSymb = "%,m97,m98,m99,m100,m101,m102,m103,m104,m105,m106,m107,m108,m109,m110,m111,m112,m113,m114,m115,m116,m117,m118,m119,m120,m121,m122,m123,M65,M66,M67,M68,M69,M70,M71,M72,M73,M74,M75,M76,M77,M78,M79,M80,M81,M82,M83,M84,M85,M86,M87,M89,M90,M91,M92,n48,n49,n50,n51,n52,n53,n54,n55,n56,n57";
+            string[] conversorSplit = ToSymb.Split(',');
+            char[] textoPlano = textBox.ToCharArray();
+
+            for (int i = 0; i < textoPlano.Length; i++)
+            {
+                for (int j = 0; j < alfanumerico.Length; j++)
+                {
+                    if (alfanumerico[j] == textoPlano[i])
+                    {
+                        textoCifrado = textoCifrado + conversorSplit[j] + " ";
+                    }
+                }
+            }
+            return textoCifrado;
+        }
         #endregion
 
         #region Descifrado
-        public string descifrarCodigo()
+        public string descifrarCodigo(string codigo)
         {
             char[] alfa =
             {
@@ -61,7 +99,7 @@ namespace CRUD
             };
             string conversor = " ,0,1,2,3,4,5,6,7,8,9";
             string[] conversorSplit = conversor.Split(',');
-            char[] codigoDes = txtCodigo.Text.ToCharArray();
+            char[] codigoDes = codigo.ToCharArray();
 
             for (int i = 0; i < codigoDes.Length; i++)
             {
@@ -74,7 +112,37 @@ namespace CRUD
                 }
             }
             return codigoDescifrado;
-            
+
+        }
+
+        public string descifrarNomAndDesc(string textBox)
+        {
+           
+            char[] alfanumerico =
+            {
+                ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+                'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+                'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S',
+                'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4',
+                '5', '6', '7', '8', '9'
+            };
+            string ToSymb = "%,m97,m98,m99,m100,m101,m102,m103,m104,m105,m106,m107,m108,m109,m110,m111,m112,m113,m114,m115,m116,m117,m118,m119,m120,m121,m122,m123,M65,M66,M67,M68,M69,M70,M71,M72,M73,M74,M75,M76,M77,M78,M79,M80,M81,M82,M83,M84,M85,M86,M87,M89,M90,M91,M92,n48,n49,n50,n51,n52,n53,n54,n55,n56,n57";
+            string[] conversorSplit = ToSymb.Split(',');
+            string[] textoPlano = textBox.Split(' ');
+
+            for (int i = 0; i < textoPlano.Length; i++)
+            {
+                for (int j = 0; j < conversorSplit.Length; j++)
+                {
+                    if (conversorSplit[j] == textoPlano[i])
+                    {
+                        textoDescifrado = textoDescifrado + alfanumerico[j];
+                    }
+                }
+            }
+
+            return textoDescifrado;
         }
         #endregion
 
@@ -82,8 +150,11 @@ namespace CRUD
         {
             try
             {
-                cifrarCodigo();
+                cifrarCodigo(txtCodigo.Text);
                 txtCodigo.Text = codigoCifrado;
+                cifrarNomAndDesc(txtDescripcion.Text);
+                txtDescripcion.Text = textoCifrado;
+
                 String codigo = txtCodigo.Text;
                 String nombre = txtNombre.Text;
                 String descripcion = txtDescripcion.Text;
@@ -104,6 +175,7 @@ namespace CRUD
                         comando.ExecuteNonQuery();
                         MessageBox.Show("Registro guardado");
                         limpiar();
+                        Application.Restart();
                     }
                     catch (MySqlException ex)
                     {
@@ -113,11 +185,13 @@ namespace CRUD
                     {
                         conexionBD.Close();
                     }
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Debe completar todos los campos");
                 }
-            } catch(FormatException fex)
+            }
+            catch (FormatException fex)
             {
                 MessageBox.Show("Datos incorrectos: " + fex.Message);
             }
@@ -148,11 +222,13 @@ namespace CRUD
                         txtPrecioPublico.Text = reader.GetString(4);
                         txtExistencias.Text = reader.GetString(5);
                     }
-                } else
+                }
+                else
                 {
                     MessageBox.Show("No se encontraron registros");
                 }
-            } catch(MySqlException ex)
+            }
+            catch (MySqlException ex)
             {
                 MessageBox.Show("Error al buscar " + ex.Message);
             }
@@ -165,6 +241,9 @@ namespace CRUD
 
         private void btnActualizar_Click(object sender, EventArgs e)
         {
+            cifrarNomAndDesc(txtDescripcion.Text);
+            txtDescripcion.Text = textoCifrado;
+
             String id = txtId.Text;
             String codigo = txtCodigo.Text;
             String nombre = txtNombre.Text;
@@ -172,7 +251,7 @@ namespace CRUD
             double precio_publico = double.Parse(txtPrecioPublico.Text);
             int existencias = int.Parse(txtExistencias.Text);
 
-            string sql = "UPDATE productos SET codigo='"+codigo+"', nombre='"+nombre+ "', descripcion='" + descripcion + "', precio_publico='" + precio_publico + "', existencias='" + existencias + "' WHERE id='"+id+"'";
+            string sql = "UPDATE productos SET codigo='" + codigo + "', nombre='" + nombre + "', descripcion='" + descripcion + "', precio_publico='" + precio_publico + "', existencias='" + existencias + "' WHERE id='" + id + "'";
 
             MySqlConnection conexionBD = Conexion.conexion();
             conexionBD.Open();
@@ -183,6 +262,7 @@ namespace CRUD
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Registro modificado");
                 limpiar();
+                Application.Restart();
             }
             catch (MySqlException ex)
             {
@@ -197,7 +277,7 @@ namespace CRUD
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             String id = txtId.Text;
-           
+
             string sql = "DELETE FROM productos WHERE id='" + id + "'";
 
             MySqlConnection conexionBD = Conexion.conexion();
@@ -209,6 +289,7 @@ namespace CRUD
                 comando.ExecuteNonQuery();
                 MessageBox.Show("Registro eliminado");
                 limpiar();
+                Application.Restart();
             }
             catch (MySqlException ex)
             {
@@ -238,13 +319,17 @@ namespace CRUD
             txtRealCodigo.ResetText();
             txtRealCodigo.Refresh();
             txtCodigo.Enabled = true;
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            descifrarCodigo();
+            descifrarCodigo(txtCodigo.Text);
             txtRealCodigo.Text = codigoDescifrado;
+            descifrarNomAndDesc(txtDescripcion.Text);
+            txtDescripcion.Text = textoDescifrado;
+
+            //MessageBox.Show(textoDescifrado);
         }
 
         private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
@@ -261,7 +346,7 @@ namespace CRUD
             {
                 e.Handled = false;
             }
-            else if (e.KeyChar ==  '-')
+            else if (e.KeyChar == '-')
             {
                 e.Handled = false;
             }
