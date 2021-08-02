@@ -25,12 +25,7 @@ namespace CRUD
             InitializeComponent();
             ToolTip tipParaTontos = new ToolTip();
 
-            //tipForDummie.AutoPopDelay = 400;
-            //tipForDummie.InitialDelay = 1000;
-            //tipForDummie.ReshowDelay = 500;
-
             this.tipForDummie.ShowAlways = true;
-
             this.tipForDummie.SetToolTip(this.txtCodigo, "Solo numeros y un espacio entre ellos.");
             this.tipForDummie.SetToolTip(this.txtNombre, "Solo numeros, letras minusculas y mayusculas");
             this.tipForDummie.SetToolTip(this.txtDescripcion, "Solo numeros, letras minusculas y mayusculas");
